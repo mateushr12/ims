@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "hanzo-ims": {
+      "hosting": {
+        "ims": [
+          "hanzo-ims"
+        ]
+      }
+    }
+  }
+}

@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyC35bfdbsOGD1TLeNyu1_l7hM6iX3TZoUM',
+    authDomain: 'hanzo-ims.firebaseapp.com',
+    projectId: 'hanzo-ims',
+    storageBucket: 'hanzo-ims.appspot.com',
+    messagingSenderId: '666996689487',
+    appId: '1:666996689487:web:95e46f810bd9c789b9383a',
+    measurementId: 'G-TLMVFF0NMZ'
+  }
 };
 
 /*

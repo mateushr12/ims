@@ -1,0 +1,81 @@
+<h1>Nova Operação</h1>
+<form [formGroup]="formulario">
+  <mat-dialog-content>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label class="required">Estrategia</mat-label>
+        <mat-select formControlName="estrategia">
+          <mat-option value="MARCACAO MERCADO">Marcação a mercado</mat-option>
+          <mat-option value="TRV PUT">Trava de alta com put</mat-option>
+          <mat-option value="TRV CALL"
+            >Trava de baixa com call</mat-option
+          >
+          <mat-option value="BUY CALL">Buy call long</mat-option>
+          <mat-option value="BUY PUT">Buy put long</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Conta</mat-label>
+        <mat-select formControlName="conta">
+          <mat-option value="MODAL">Modal</mat-option>
+          <mat-option value="CLEAR">Clear</mat-option>
+          <mat-option value="BINANCE">Binance</mat-option>
+          <mat-option value="BITCOINTRADE">Bitcointrade</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="tipo">
+          <mat-option value="OPTIONS">Options</mat-option>
+          <mat-option value="BONDS">Bonds</mat-option>
+          <mat-option value="EQUITYS">Equitys</mat-option>
+          <mat-option value="CRYPTOS">Cryptos</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Data Inicio</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dt_inicio" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Valor Incial</mat-label>
+        <input matInput formControlName="vl_inicio" type="number" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Qtd Incial</mat-label>
+        <input matInput formControlName="qtd_inicio" type="number" />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Data Final</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dt_fim" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Valor Final</mat-label>
+        <input matInput formControlName="vl_fim" type="number" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Qtd Final</mat-label>
+        <input matInput formControlName="qtd_fim" type="number" />
+      </mat-form-field>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">save</mat-icon>
+        Salvar
+    </button>
+  </mat-dialog-actions>
+</form>
