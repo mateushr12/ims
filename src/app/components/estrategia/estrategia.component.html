@@ -1,0 +1,49 @@
+<mat-card class="cartao">
+  <mat-card-header>
+    <h2>Estrategia</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="formulario">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label class="required">Nome</mat-label>
+          <input matInput formControlName="nome" oninput="this.value = this.value.toUpperCase()" />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label class="required">Detalhes</mat-label>
+          <textarea
+            matInput
+            placeholder="Detalhes"
+            formControlName="detalhes"
+          ></textarea>
+        </mat-form-field>
+      </p>
+      <p>
+        <button mat-raised-button color="primary" (click)="save()" [disabled]="!validForm">
+          <mat-icon aria-hidden="false" aria-label="Example home icon"
+            >save</mat-icon
+          >
+          Salvar
+        </button>
+      </p>
+    </form>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Editar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let estrategia of estrategias">
+        <td>{{ estrategia.nome }}</td>
+        <td><mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon></td>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>

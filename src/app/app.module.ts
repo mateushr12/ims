@@ -26,6 +26,9 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EstrategiaComponent } from './components/estrategia/estrategia.component';
+import { ContaComponent } from './components/conta/conta.component';
+import { TipoComponent } from './components/tipo/tipo.component';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     NavBarComponent,
     PortfolioComponent,
-    NewComponent
+    NewComponent,
+    EstrategiaComponent,
+    ContaComponent,
+    TipoComponent
   ],
   imports: [
     BrowserModule,

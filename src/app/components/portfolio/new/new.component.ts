@@ -1,8 +1,10 @@
+import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Portfolio } from './../../../models/portfolio.model';
 import { PortfolioService } from './../../../services/portfolio.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { EstrategiaService } from 'src/app/services/estrategia.service';
 
 @Component({
   selector: 'app-new',
@@ -12,14 +14,25 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class NewComponent implements OnInit {
   //object that will recive the operation form field
   formulario: any;
+  data_inicio!: Date;
+  estrategias: any;
 
   constructor(
     private fb: FormBuilder,
-    private portfolioService: PortfolioService
+    private portfolioService: PortfolioService,
+    private estrategiaService: EstrategiaService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
     this.intialForm();
+    this.estrategiaService.getStrategy().subscribe((data) => {
+      this.estrategias = data.map((e: any) => {
+        return {
+          ...e.payload.doc.data(),
+        };
+      });
+    });
         
   }
 
@@ -43,11 +56,25 @@ export class NewComponent implements OnInit {
     this.portfolioService
       .newOperation(operacao)
       .then((res) => {
-        this.formulario.reset();
-        console.log(res);
+        //this.formulario.reset();        
+        this.route.navigate(['/portfolio'])
       })
       .catch((e) => {
         console.error(e);
       });
   }
+
+  alterDate() {
+    this.data_inicio = this.formulario.value.dt_inicio;
+  }
+
+  maxValue() {    
+    this.formulario.controls['qtd_fim'].setValidators(Validators.max(this.formulario.value.qtd_inicio));  
+    this.formulario.controls['qtd_fim'].updateValueAndValidity();  
+  }
+
+  get validForm(){
+    return this.formulario.valid
+  }
+
 }

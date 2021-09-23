@@ -4,14 +4,11 @@
     <p>
       <mat-form-field appearance="outline">
         <mat-label class="required">Estrategia</mat-label>
-        <mat-select formControlName="estrategia">
-          <mat-option value="MARCACAO MERCADO">Marcação a mercado</mat-option>
-          <mat-option value="TRV PUT">Trava de alta com put</mat-option>
-          <mat-option value="TRV CALL"
-            >Trava de baixa com call</mat-option
-          >
-          <mat-option value="BUY CALL">Buy call long</mat-option>
-          <mat-option value="BUY PUT">Buy put long</mat-option>
+        <mat-select formControlName="estrategia" >
+          <mat-option > - </mat-option>                              
+          <mat-option *ngFor="let estrategia of estrategias" [value]="estrategia.nome">
+            {{estrategia.nome}}
+          </mat-option>          
         </mat-select>
       </mat-form-field>
 
@@ -38,7 +35,7 @@
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Data Inicio</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="dt_inicio" />
+        <input matInput [matDatepicker]="picker" (dateChange)="alterDate()" formControlName="dt_inicio" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -56,9 +53,9 @@
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Data Final</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="dt_fim" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input matInput [matDatepicker]="pickerF" formControlName="dt_fim" [min]="data_inicio" />
+        <mat-datepicker-toggle matSuffix [for]="pickerF"></mat-datepicker-toggle>
+        <mat-datepicker #pickerF></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -68,12 +65,12 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Qtd Final</mat-label>
-        <input matInput formControlName="qtd_fim" type="number" />
+        <input matInput formControlName="qtd_fim" type="number" (input)="maxValue()" />
       </mat-form-field>
     </p>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="save()">
+    <button mat-raised-button color="primary" (click)="save()" [disabled]="!validForm" >
         <mat-icon aria-hidden="false" aria-label="Example home icon">save</mat-icon>
         Salvar
     </button>

@@ -14,11 +14,12 @@ export class PortfolioService {
     return this.firestore.collection('Portfolio').add(data);
   }
 
+  getOperation(): Observable<any> {
+    return this.firestore.collection('Portfolio').snapshotChanges();
+  }
+  
   editOperation() {}
 
   deleteOperation() {}
 
-  getOperation(): Observable<any> {
-    return this.firestore.collection('Portfolio').snapshotChanges();
-  }
 }
