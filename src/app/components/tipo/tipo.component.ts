@@ -1,3 +1,4 @@
+import { TipoService } from './../../services/tipo.service';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 
@@ -9,11 +10,13 @@ import { Validators, FormBuilder } from '@angular/forms';
 export class TipoComponent implements OnInit {
 
   formulario: any
+  tipos: any
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private tipoService: TipoService) { }
 
   ngOnInit(): void {
-    this.intialForm()
+    this.intialForm();
+    this.allTypes();
   }
 
   intialForm() {
@@ -23,8 +26,28 @@ export class TipoComponent implements OnInit {
     })
   }
 
-  save(){
-    
+  save() {
+    let data = this.formulario.value
+    this.tipoService.newType(data)
+    .then((res) => {
+      this.intialForm();
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+  allTypes() {
+    this.tipoService.getType().subscribe((data) => {
+      this.tipos = data.map((e: any) => {
+        return { ...e.payload.doc.data() }
+      })
+    })
+  }
+
+  get validForm() {
+    return this.formulario.valid
   }
 
 }

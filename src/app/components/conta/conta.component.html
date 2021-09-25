@@ -7,7 +7,7 @@
       <p>
         <mat-form-field appearance="outline">
           <mat-label class="required">Nome</mat-label>
-          <input matInput formControlName="nome" />
+          <input matInput formControlName="nome" oninput="this.value = this.value.toUpperCase()" />
         </mat-form-field>
       </p>
       <p>
@@ -16,12 +16,12 @@
           <textarea
             matInput
             placeholder="Detalhes"
-            formControlName="detalhe"
+            formControlName="detalhes"
           ></textarea>
         </mat-form-field>
       </p>
       <p>
-        <button mat-raised-button color="primary" (click)="save()">
+        <button mat-raised-button color="primary" (click)="save()" [disabled]="!validForm" >
           <mat-icon aria-hidden="false" aria-label="Example home icon"
             >save</mat-icon
           >
@@ -39,8 +39,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>nnnnnn</td>
+      <tr *ngFor = "let conta of contas">
+        <td>{{ conta.nome }}</td>
       </tr>
     </tbody>
   </table>

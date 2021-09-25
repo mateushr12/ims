@@ -1,38 +1,45 @@
-<mat-card class="cartao">
-  <span id="titulo">Meus Investimentos</span>
-  <button type="button" (click)="novo()" class="btn btn-primary btn-sm">
-    <!-- <mat-icon aria-hidden="false" >note_add</mat-icon> -->
-    Novo
+<mat-card class="cartao"> 
+  <h2>Investimentos</h2>
+  <button mat-raised-button color="primary" (click)="novo()">
+    <mat-icon>save</mat-icon> NOVO
   </button>
 </mat-card>
 <mat-card>
   <table class="table">
     <thead>
-      <tr>        
+      <tr>
         <th scope="col">Estrategia</th>
         <th scope="col">Conta</th>
         <th scope="col">Tipo</th>
         <th scope="col">Dt. Inicio</th>
+        <th scope="col">Dt. Fim</th>
         <th scope="col">Qtd. Inicio</th>
         <th scope="col">Vl. Inicio</th>
-        <th scope="col">Total Inicio</th>
-        <th scope="col">Dt. Fim</th>
         <th scope="col">Qtd. Fim</th>
-        <th scope="col">Vl. Fim</th>        
+        <th scope="col">Vl. Fim</th>
+        <th scope="col">**Lucro</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let operacao of operacoes" >                        
-        <td>{{operacao.estrategia}}</td>
-        <td>{{operacao.conta}}</td>
-        <td>{{operacao.tipo}}</td>
-        <td>{{operacao.dt_inicio | date:'dd/MM/yyyy' }}</td>
-        <td>{{operacao.qtd_inicio}}</td>
-        <td>{{operacao.vl_inicio}}</td>
-        <td> {{operacao.total}} </td>
-        <td>{{operacao.dt_fim}}</td>
-        <td>{{operacao.qtd_fim}}</td>
-        <td>{{operacao.vl_fim}}</td>        
+      <tr *ngFor="let operacao of operacoes">
+        <td>{{ operacao.estrategia }}</td>
+        <td>{{ operacao.conta }}</td>
+        <td>{{ operacao.tipo }}</td>
+        <td>{{ operacao.dt_inicio | date: "dd/MM/yyyy" }}</td>
+        <td>{{ operacao.dt_fim }}</td>
+        <td>{{ operacao.qtd_inicio }}</td>
+        <td>{{ operacao.vl_inicio }}</td>
+        <td>{{ operacao.qtd_fim }}</td>
+        <td>{{ operacao.vl_fim }}</td>
+        <td>
+          {{
+            operacao.vl_fim != ""
+              ? operacao.total_inicio
+              : operacao.total_fim - operacao.total_inicio
+          }}
+        </td>
+        <td><button mat-raised-button ><mat-icon>edit</mat-icon></button></td>
       </tr>
     </tbody>
   </table>

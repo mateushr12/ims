@@ -1,3 +1,5 @@
+import { TipoService } from './../../../services/tipo.service';
+import { ContaService } from './../../../services/conta.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Portfolio } from './../../../models/portfolio.model';
@@ -15,25 +17,25 @@ export class NewComponent implements OnInit {
   //object that will recive the operation form field
   formulario: any;
   data_inicio!: Date;
+  
   estrategias: any;
+  contas: any;
+  tipos: any;
 
   constructor(
     private fb: FormBuilder,
     private portfolioService: PortfolioService,
     private estrategiaService: EstrategiaService,
+    private contaService: ContaService,
+    private tipoService: TipoService,
     private route: Router
   ) {}
 
   ngOnInit(): void {
     this.intialForm();
-    this.estrategiaService.getStrategy().subscribe((data) => {
-      this.estrategias = data.map((e: any) => {
-        return {
-          ...e.payload.doc.data(),
-        };
-      });
-    });
-        
+    this.allCounts();
+    this.allTypes();
+    this.allStrategies();            
   }
 
   intialForm() {
@@ -66,6 +68,30 @@ export class NewComponent implements OnInit {
 
   alterDate() {
     this.data_inicio = this.formulario.value.dt_inicio;
+  }
+
+  allCounts() {
+    this.contaService.getCount().subscribe((data) => {
+      this.contas = data.map((e:any) => {
+        return { ...e.payload.doc.data() }
+      })
+    })
+  }
+
+  allTypes() {
+    this.tipoService.getType().subscribe((data) => {
+      this.tipos = data.map((e:any) => {
+        return { ...e.payload.doc.data() }
+      })
+    })
+  }
+
+  allStrategies(){
+    this.estrategiaService.getStrategy().subscribe((data) => {
+      this.estrategias = data.map((e:any) => {
+        return { ...e.payload.doc.data() }
+      })
+    })
   }
 
   maxValue() {    

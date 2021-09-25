@@ -10,11 +10,11 @@ export class TipoService {
   constructor(private firestore: AngularFirestore) { }
 
   newType(data: any) {
-    return this.firestore.collection('Estrategia').add(data);
+    return this.firestore.collection('Tipo').add(data);
   }
 
   getType(): Observable<any> {
-    return this.firestore.collection('Estrategia').snapshotChanges();
+    return this.firestore.collection('Tipo').snapshotChanges();
   }
   
 }

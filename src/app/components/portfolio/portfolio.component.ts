@@ -7,32 +7,43 @@ import { NewComponent } from './new/new.component';
 @Component({
   selector: 'app-portfolio',
   templateUrl: './portfolio.component.html',
-  styleUrls: ['./portfolio.component.scss']
+  styleUrls: ['./portfolio.component.scss'],
 })
 export class PortfolioComponent implements OnInit {
-
   //operacoes!: Portfolio[]
-  operacoes: any
+  operacoes: any;
 
-  constructor(private dialogo: MatDialog, private portfolioService: PortfolioService) { }
+  constructor(
+    private dialogo: MatDialog,
+    private portfolioService: PortfolioService
+  ) {}
 
   ngOnInit(): void {
-    this.portfolioService.getOperation().subscribe(
-      (data) => {
-        this.operacoes = data.map( (e : any) => {
-          return {
-            id: e.payload.doc.id,
-            ...e.payload.doc.data(), 
-            dt_inicio: e.payload.doc.data()['dt_inicio'].toDate(), 
-            total: ((e.payload.doc.data()['qtd_inicio'])*(e.payload.doc.data()['vl_inicio']))                        
-          } 
-          //as Portfolio
-        })
-      })
+    this.allOperations();
   }
 
-  novo(){
+  novo() {
     this.dialogo.open(NewComponent);
   }
 
+  allOperations() {
+    this.portfolioService.getOperation().subscribe((data) => {
+      this.operacoes = data.map((e: any) => {
+        return {
+          id: e.payload.doc.id,
+          ...e.payload.doc.data(),
+          dt_inicio: e.payload.doc.data()['dt_inicio'].toDate(),
+          total_inicio:
+            e.payload.doc.data()['qtd_inicio'] *
+            e.payload.doc.data()['vl_inicio'],
+          total_fim:
+            e.payload.doc.data()['qtd_fim'] * e.payload.doc.data()['vl_fim'],
+        };
+        //as Portfolio
+      });
+      console.log(this.operacoes);
+    });
+  }
+
+  
 }

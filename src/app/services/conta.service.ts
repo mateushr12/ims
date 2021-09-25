@@ -10,11 +10,11 @@ export class ContaService {
   constructor(private firestore: AngularFirestore) { }
 
   newCount(data: any) {
-    return this.firestore.collection('Estrategia').add(data);
+    return this.firestore.collection('Conta').add(data);
   }
 
   getCount(): Observable<any> {
-    return this.firestore.collection('Estrategia').snapshotChanges();
+    return this.firestore.collection('Conta').snapshotChanges();
   }
 
 }

@@ -15,20 +15,20 @@
       <mat-form-field appearance="outline">
         <mat-label>Conta</mat-label>
         <mat-select formControlName="conta">
-          <mat-option value="MODAL">Modal</mat-option>
-          <mat-option value="CLEAR">Clear</mat-option>
-          <mat-option value="BINANCE">Binance</mat-option>
-          <mat-option value="BITCOINTRADE">Bitcointrade</mat-option>
+          <mat-option > - </mat-option>  
+          <mat-option *ngFor="let conta of contas" [value]="conta.nome" >
+            {{conta.nome}}
+          </mat-option>          
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Tipo</mat-label>
         <mat-select formControlName="tipo">
-          <mat-option value="OPTIONS">Options</mat-option>
-          <mat-option value="BONDS">Bonds</mat-option>
-          <mat-option value="EQUITYS">Equitys</mat-option>
-          <mat-option value="CRYPTOS">Cryptos</mat-option>
+          <mat-option > - </mat-option>  
+          <mat-option *ngFor="let tipo of tipos" [value]="tipo.nome" >
+            {{tipo.nome}}
+          </mat-option>   
         </mat-select>
       </mat-form-field>
     </p>
