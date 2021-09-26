@@ -22,13 +22,16 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { NewComponent } from './components/portfolio/new/new.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EstrategiaComponent } from './components/estrategia/estrategia.component';
 import { ContaComponent } from './components/conta/conta.component';
 import { TipoComponent } from './components/tipo/tipo.component';
+import { UpdateComponent } from './components/portfolio/update/update.component';
+import { EditComponent } from './components/conta/edit/edit.component';
 
 
 @NgModule({
@@ -39,7 +42,9 @@ import { TipoComponent } from './components/tipo/tipo.component';
     NewComponent,
     EstrategiaComponent,
     ContaComponent,
-    TipoComponent
+    TipoComponent,
+    UpdateComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,8 @@ import { TipoComponent } from './components/tipo/tipo.component';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-br' }

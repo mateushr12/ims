@@ -1,6 +1,8 @@
+import { EditComponent } from './edit/edit.component';
 import { ContaService } from './../../services/conta.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-conta',
@@ -11,7 +13,7 @@ export class ContaComponent implements OnInit {
   formulario: any;
   contas: any;
 
-  constructor(private fb: FormBuilder, private contaService: ContaService) {}
+  constructor(private fb: FormBuilder, private contaService: ContaService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.intialForm();
@@ -35,6 +37,16 @@ export class ContaComponent implements OnInit {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  delete(id: any) {
+    if (confirm('Delete?')){
+      return id
+    }
+  }
+
+  edit() {
+    this.dialog.open(EditComponent)
   }
 
   allCount() {

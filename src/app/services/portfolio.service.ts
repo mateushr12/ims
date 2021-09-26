@@ -18,8 +18,12 @@ export class PortfolioService {
     return this.firestore.collection('Portfolio').snapshotChanges();
   }
   
-  editOperation() {}
+  editOperation(id: any,record: any) {
+    return this.firestore.doc('Portfolio/'+id).update(record)
+  }
 
-  deleteOperation() {}
+  deleteOperation(id: any) {    
+    return this.firestore.collection('Portfolio').doc(id).delete();          
+  }
 
 }

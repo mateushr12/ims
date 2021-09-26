@@ -36,12 +36,20 @@
     <thead>
       <tr>
         <th scope="col">Nome</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor = "let conta of contas">
         <td>{{ conta.nome }}</td>
-      </tr>
+        <td>
+          <button mat-raised-button (click)="edit()">
+            <mat-icon>edit</mat-icon></button
+          >&nbsp;<button mat-raised-button (click)="delete(conta.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>      
     </tbody>
   </table>
 </mat-card>

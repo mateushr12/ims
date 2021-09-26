@@ -1,8 +1,10 @@
+import { UpdateComponent } from './update/update.component';
 import { Portfolio } from './../../models/portfolio.model';
 import { PortfolioService } from './../../services/portfolio.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NewComponent } from './new/new.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-portfolio',
@@ -15,7 +17,8 @@ export class PortfolioComponent implements OnInit {
 
   constructor(
     private dialogo: MatDialog,
-    private portfolioService: PortfolioService
+    private portfolioService: PortfolioService,
+    private snack : MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -45,5 +48,34 @@ export class PortfolioComponent implements OnInit {
     });
   }
 
-  
+  edit(portfolio: any) {
+    this.dialogo.open( UpdateComponent, {
+      data: {
+        portfolio
+      }
+    })
+  }
+
+  delete(id: any) {
+    if (confirm('delete?')) {
+      this.portfolioService.deleteOperation(id)
+      .then(() => {
+        this.msgDelete();
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+    }    
+  }
+
+  msgDelete() {
+    this.snack.open('Operação deletada com sucesso!', '', {
+      panelClass: ['delete'],
+      duration: 4000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right'
+    })
+  }
+
+
 }

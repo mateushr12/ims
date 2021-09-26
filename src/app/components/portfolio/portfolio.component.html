@@ -1,7 +1,7 @@
-<mat-card class="cartao"> 
+<mat-card class="cartao">
   <h2>Investimentos</h2>
   <button mat-raised-button color="primary" (click)="novo()">
-    <mat-icon>save</mat-icon> NOVO
+    <mat-icon>save</mat-icon> Novo
   </button>
 </mat-card>
 <mat-card>
@@ -17,7 +17,8 @@
         <th scope="col">Vl. Inicio</th>
         <th scope="col">Qtd. Fim</th>
         <th scope="col">Vl. Fim</th>
-        <th scope="col">**Lucro</th>
+        <th scope="col">Lucro</th>
+        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -32,14 +33,15 @@
         <td>{{ operacao.vl_inicio }}</td>
         <td>{{ operacao.qtd_fim }}</td>
         <td>{{ operacao.vl_fim }}</td>
+        <td>{{ operacao.total_fim - operacao.total_inicio }}</td>
         <td>
-          {{
-            operacao.vl_fim != ""
-              ? operacao.total_inicio
-              : operacao.total_fim - operacao.total_inicio
-          }}
+          <button mat-raised-button (click)="edit(operacao)">
+            <mat-icon>edit</mat-icon></button
+          >&nbsp;<button mat-raised-button (click)="delete(operacao.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
         </td>
-        <td><button mat-raised-button ><mat-icon>edit</mat-icon></button></td>
+        <!-- <td><button mat-raised-button (click)="delete(operacao.id)" ><mat-icon>delete</mat-icon></button></td> -->
       </tr>
     </tbody>
   </table>
