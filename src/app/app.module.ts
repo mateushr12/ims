@@ -32,6 +32,8 @@ import { ContaComponent } from './components/conta/conta.component';
 import { TipoComponent } from './components/tipo/tipo.component';
 import { UpdateComponent } from './components/portfolio/update/update.component';
 import { EditComponent } from './components/conta/edit/edit.component';
+import { EditEstrategiaComponent } from './components/estrategia/edit-estrategia/edit-estrategia.component';
+import { EditTipoComponent } from './components/tipo/edit-tipo/edit-tipo.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { EditComponent } from './components/conta/edit/edit.component';
     ContaComponent,
     TipoComponent,
     UpdateComponent,
-    EditComponent
+    EditComponent,
+    EditEstrategiaComponent,
+    EditTipoComponent
   ],
   imports: [
     BrowserModule,

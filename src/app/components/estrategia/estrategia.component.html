@@ -36,13 +36,19 @@
     <thead>
       <tr>
         <th scope="col">Nome</th>
-        <th scope="col">Editar</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor = "let estrategia of estrategias">
-        <td>{{ estrategia.nome }}</td>
-        <td><mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon></td>
+        <td>{{ estrategia.nome }}</td>        
+        <td>
+          <button mat-raised-button (click)="edit(estrategia)">
+            <mat-icon>edit</mat-icon></button
+          >&nbsp;<button mat-raised-button (click)="delete(estrategia.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

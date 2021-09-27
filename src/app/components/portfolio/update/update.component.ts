@@ -32,9 +32,7 @@ export class UpdateComponent implements OnInit {
     private snack: MatSnackBar
   ) {}
 
-  ngOnInit(): void {
-    
-    console.log(this.data.portfolio.id)
+  ngOnInit(): void {        
 
     this.formulario = this.fb.group({
       estrategia: [this.data.portfolio.estrategia , Validators.required],

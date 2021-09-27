@@ -16,5 +16,13 @@ export class TipoService {
   getType(): Observable<any> {
     return this.firestore.collection('Tipo').snapshotChanges();
   }
+
+  editType(id: any,record: any) {
+    return this.firestore.doc('Tipo/'+id).update(record)
+  }
+
+  deleteType(id: any) {    
+    return this.firestore.collection('Tipo').doc(id).delete();          
+  }
   
 }

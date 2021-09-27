@@ -1,40 +1,40 @@
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ContaService } from 'src/app/services/conta.service';
+import { EstrategiaService } from 'src/app/services/estrategia.service';
 import { UpdateComponent } from '../../portfolio/update/update.component';
 
 @Component({
-  selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss'],
+  selector: 'app-edit-estrategia',
+  templateUrl: './edit-estrategia.component.html',
+  styleUrls: ['./edit-estrategia.component.scss']
 })
-export class EditComponent implements OnInit {
-  formulario!: FormGroup;
-  estrategias: any;
-  contas: any;  
+export class EditEstrategiaComponent implements OnInit {
 
+  formulario!: FormGroup;
+  estrategias: any;  
+  
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialog: MatDialogRef<UpdateComponent>,
     private fb: FormBuilder,
-    private contaService: ContaService,
+    private estrategiaService: EstrategiaService,
     private snack: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
-      detalhes: [this.data.conta.detalhes],
-      nome: [this.data.conta.nome, Validators.required],
+      detalhes: [this.data.estrategias.detalhes],
+      nome: [this.data.estrategias.nome, Validators.required],
     });
   }
 
   update() {
     let dataUpdate = this.formulario.value;
-    let idUpdate = this.data.conta.id;
-    this.contaService
-      .editCount(idUpdate, dataUpdate)
+    let idUpdate = this.data.estrategias.id;
+    this.estrategiaService
+      .editStrategy(idUpdate, dataUpdate)
       .then((res) => {
         this.msgSucesso();
         this.dialog.close();
@@ -56,4 +56,5 @@ export class EditComponent implements OnInit {
   get validForm() {
     return this.formulario.valid;
   }
+
 }

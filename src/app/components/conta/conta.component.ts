@@ -45,8 +45,12 @@ export class ContaComponent implements OnInit {
     }
   }
 
-  edit() {
-    this.dialog.open(EditComponent)
+  edit(conta: any) {
+    this.dialog.open(EditComponent, {
+      data: {
+        conta
+      }
+    })
   }
 
   allCount() {

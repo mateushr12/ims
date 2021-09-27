@@ -1,40 +1,40 @@
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ContaService } from 'src/app/services/conta.service';
+import { TipoService } from 'src/app/services/tipo.service';
 import { UpdateComponent } from '../../portfolio/update/update.component';
 
 @Component({
-  selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss'],
+  selector: 'app-edit-tipo',
+  templateUrl: './edit-tipo.component.html',
+  styleUrls: ['./edit-tipo.component.scss']
 })
-export class EditComponent implements OnInit {
+export class EditTipoComponent implements OnInit {
+
   formulario!: FormGroup;
-  estrategias: any;
-  contas: any;  
+  tipo: any;  
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialog: MatDialogRef<UpdateComponent>,
     private fb: FormBuilder,
-    private contaService: ContaService,
+    private tipoService: TipoService,
     private snack: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
-      detalhes: [this.data.conta.detalhes],
-      nome: [this.data.conta.nome, Validators.required],
+      detalhes: [this.data.tipo.detalhes],
+      nome: [this.data.tipo.nome, Validators.required],
     });
   }
 
   update() {
     let dataUpdate = this.formulario.value;
-    let idUpdate = this.data.conta.id;
-    this.contaService
-      .editCount(idUpdate, dataUpdate)
+    let idUpdate = this.data.tipo.id;
+    this.tipoService
+      .editType(idUpdate, dataUpdate)
       .then((res) => {
         this.msgSucesso();
         this.dialog.close();
@@ -56,4 +56,5 @@ export class EditComponent implements OnInit {
   get validForm() {
     return this.formulario.valid;
   }
+
 }

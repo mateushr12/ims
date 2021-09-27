@@ -6,13 +6,21 @@ import { AngularFirestore } from '@angular/fire/firestore';
   providedIn: 'root',
 })
 export class EstrategiaService {
-  constructor(private firestrore: AngularFirestore) {}
+  constructor(private firestore: AngularFirestore) {}
 
   newStrategy(data: any) {
-    return this.firestrore.collection('Estrategia').add(data);
+    return this.firestore.collection('Estrategia').add(data);
   }
 
   getStrategy(): Observable<any> {
-    return this.firestrore.collection('Estrategia').snapshotChanges();
+    return this.firestore.collection('Estrategia').snapshotChanges();
+  }
+
+  editStrategy(id: any,record: any) {
+    return this.firestore.doc('Estrategia/'+id).update(record)
+  }
+
+  deleteStrategy(id: any) {    
+    return this.firestore.collection('Estrategia').doc(id).delete();          
   }
 }

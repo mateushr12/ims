@@ -1,7 +1,10 @@
+import { EditEstrategiaComponent } from './edit-estrategia/edit-estrategia.component';
+import { MatDialog } from '@angular/material/dialog';
 import { map } from 'rxjs/operators';
 import { EstrategiaService } from './../../services/estrategia.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-estrategia',
@@ -14,7 +17,8 @@ export class EstrategiaComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private estrategiaService: EstrategiaService
+    private estrategiaService: EstrategiaService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +48,20 @@ export class EstrategiaComponent implements OnInit {
       .catch((e) => {
         console.error(e);
       });
+  }
+
+  delete(id: any) {
+    if (confirm('Delete?')){
+      return id
+    }
+  }
+
+  edit(estrategia: any) {
+    this.dialog.open(EditEstrategiaComponent, {
+      data: {
+        estrategia
+      }
+    })
   }
 
   get validForm(): boolean {

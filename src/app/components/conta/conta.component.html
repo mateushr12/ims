@@ -43,7 +43,7 @@
       <tr *ngFor = "let conta of contas">
         <td>{{ conta.nome }}</td>
         <td>
-          <button mat-raised-button (click)="edit()">
+          <button mat-raised-button (click)="edit(conta)">
             <mat-icon>edit</mat-icon></button
           >&nbsp;<button mat-raised-button (click)="delete(conta.id)">
             <mat-icon>delete</mat-icon>

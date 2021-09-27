@@ -50,6 +50,13 @@
     <tbody>
       <tr *ngFor="let tipo of tipos">
         <td>{{ tipo.nome }}</td>
+        <td>
+          <button mat-raised-button (click)="edit(tipo)">
+            <mat-icon>edit</mat-icon></button
+          >&nbsp;<button mat-raised-button (click)="delete(tipo.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

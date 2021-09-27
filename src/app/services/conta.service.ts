@@ -17,4 +17,12 @@ export class ContaService {
     return this.firestore.collection('Conta').snapshotChanges();
   }
 
+  editCount(id: any,record: any) {
+    return this.firestore.doc('Conta/'+id).update(record)
+  }
+
+  deleteCount(id: any) {    
+    return this.firestore.collection('Conta').doc(id).delete();          
+  }
+
 }
