@@ -12,8 +12,7 @@ import { UpdateComponent } from '../../portfolio/update/update.component';
 })
 export class EditEstrategiaComponent implements OnInit {
 
-  formulario!: FormGroup;
-  estrategias: any;  
+  formulario!: FormGroup;  
   
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -23,16 +22,16 @@ export class EditEstrategiaComponent implements OnInit {
     private snack: MatSnackBar
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.formulario = this.fb.group({
-      detalhes: [this.data.estrategias.detalhes],
-      nome: [this.data.estrategias.nome, Validators.required],
+      detalhes: [this.data.estrategia.detalhes],
+      nome: [this.data.estrategia.nome, Validators.required],
     });
   }
 
   update() {
     let dataUpdate = this.formulario.value;
-    let idUpdate = this.data.estrategias.id;
+    let idUpdate = this.data.estrategia.id;
     this.estrategiaService
       .editStrategy(idUpdate, dataUpdate)
       .then((res) => {

@@ -46,6 +46,7 @@ export class NewComponent implements OnInit {
       dt_inicio: ['', Validators.required],
       vl_inicio: ['', Validators.required],
       qtd_inicio: ['', Validators.required],
+      dt_vencimento: [''],
       dt_fim: [''],
       vl_fim: [''],
       qtd_fim: [''],

@@ -41,6 +41,7 @@ export class UpdateComponent implements OnInit {
       dt_inicio: [this.data.portfolio.dt_inicio, Validators.required],
       vl_inicio: [this.data.portfolio.vl_inicio, Validators.required],
       qtd_inicio: [this.data.portfolio.qtd_inicio, Validators.required],
+      dt_vencimento: [this.data.portfolio.dt_vencimento],
       dt_fim: [this.data.portfolio.dt_fim],
       vl_fim: [this.data.portfolio.vl_fim],
       qtd_fim: [this.data.portfolio.qtd_fim],

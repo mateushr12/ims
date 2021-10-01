@@ -3,7 +3,7 @@
   <mat-dialog-content>
     <p>
       <mat-form-field appearance="outline">
-        <mat-label class="required">Estrategia</mat-label>
+        <mat-label>Estrategia*</mat-label>
         <mat-select formControlName="estrategia" >
           <mat-option > - </mat-option>                              
           <mat-option *ngFor="let estrategia of estrategias" [value]="estrategia.nome">
@@ -13,7 +13,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Conta</mat-label>
+        <mat-label>Conta*</mat-label>
         <mat-select formControlName="conta">
           <mat-option > - </mat-option>  
           <mat-option *ngFor="let conta of contas" [value]="conta.nome" >
@@ -23,7 +23,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Tipo</mat-label>
+        <mat-label>Tipo*</mat-label>
         <mat-select formControlName="tipo">
           <mat-option > - </mat-option>  
           <mat-option *ngFor="let tipo of tipos" [value]="tipo.nome" >
@@ -33,20 +33,28 @@
       </mat-form-field>
     </p>
     <p>
+      <mat-form-field appearance="outline" class="vencimento">
+        <mat-label>Data de Vencimento da Opção</mat-label>
+        <input matInput [matDatepicker]="pickerV" formControlName="dt_vencimento" />
+        <mat-datepicker-toggle matSuffix [for]="pickerV"></mat-datepicker-toggle>
+        <mat-datepicker #pickerV></mat-datepicker>
+      </mat-form-field>
+    </p>
+    <p>
       <mat-form-field appearance="outline">
-        <mat-label>Data Inicio</mat-label>
+        <mat-label>Data Inicio*</mat-label>
         <input matInput [matDatepicker]="picker" (dateChange)="alterDate()" formControlName="dt_inicio" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Valor Incial</mat-label>
+        <mat-label>Valor Incial*</mat-label>
         <input matInput formControlName="vl_inicio" type="number" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Qtd Incial</mat-label>
+        <mat-label>Qtd. Incial*</mat-label>
         <input matInput formControlName="qtd_inicio" type="number" />
       </mat-form-field>
     </p>

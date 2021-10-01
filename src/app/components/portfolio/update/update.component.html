@@ -31,6 +31,14 @@
     </p>
     <p>
       <mat-form-field appearance="outline">
+        <mat-label>Data de Vencimento da Opção</mat-label>
+        <input matInput [matDatepicker]="pickerV" formControlName="dt_vencimento" />
+        <mat-datepicker-toggle matSuffix [for]="pickerV"></mat-datepicker-toggle>
+        <mat-datepicker #pickerV></mat-datepicker>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
         <mat-label>Data Inicio</mat-label>
         <input matInput [matDatepicker]="picker" (dateChange)="alterDate()" formControlName="dt_inicio" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

@@ -1,18 +1,16 @@
-<mat-card class="cartao">
-  <mat-card-header>
-    <span id="titulo">Contas</span>
-  </mat-card-header>
+<mat-card class="cartao">  
   <mat-card-content>
+    <h2>Contas</h2>
     <form [formGroup]="formulario">
       <p>
         <mat-form-field appearance="outline">
-          <mat-label class="required">Nome</mat-label>
+          <mat-label >Nome*</mat-label>
           <input matInput formControlName="nome" oninput="this.value = this.value.toUpperCase()" />
         </mat-form-field>
       </p>
       <p>
         <mat-form-field appearance="outline">
-          <mat-label class="required">Detalhes</mat-label>
+          <mat-label >Detalhes</mat-label>
           <textarea
             matInput
             placeholder="Detalhes"
@@ -31,7 +29,7 @@
     </form>
   </mat-card-content>
 </mat-card>
-<mat-card>
+<mat-card class="cartao">
   <table class="table">
     <thead>
       <tr>
@@ -42,7 +40,7 @@
     <tbody>
       <tr *ngFor = "let conta of contas">
         <td>{{ conta.nome }}</td>
-        <td>
+        <td class="direita"> 
           <button mat-raised-button (click)="edit(conta)">
             <mat-icon>edit</mat-icon></button
           >&nbsp;<button mat-raised-button (click)="delete(conta.id)">

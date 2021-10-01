@@ -1,12 +1,10 @@
-<mat-card class="cartao">
-  <mat-card-header>
-    <span id="titulo">Tipo</span>
-  </mat-card-header>
+<mat-card class="cartao">  
   <mat-card-content>
+    <h2>Tipos</h2>
     <form [formGroup]="formulario">
       <p>
         <mat-form-field appearance="outline">
-          <mat-label class="required">Nome</mat-label>
+          <mat-label >Nome*</mat-label>
           <input
             matInput
             formControlName="nome"
@@ -16,7 +14,7 @@
       </p>
       <p>
         <mat-form-field appearance="outline">
-          <mat-label class="required">Detalhes</mat-label>
+          <mat-label >Detalhes</mat-label>
           <textarea
             matInput
             placeholder="Detalhes"
@@ -40,17 +38,18 @@
     </form>
   </mat-card-content>
 </mat-card>
-<mat-card>
+<mat-card class="cartao">
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Nome</th>
+        <th ></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let tipo of tipos">
         <td>{{ tipo.nome }}</td>
-        <td>
+        <td class="direita">
           <button mat-raised-button (click)="edit(tipo)">
             <mat-icon>edit</mat-icon></button
           >&nbsp;<button mat-raised-button (click)="delete(tipo.id)">
